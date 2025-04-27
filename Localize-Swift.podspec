@@ -39,7 +39,16 @@ Pod::Spec.new do |s|
   s.subspec 'AppKit' do |appkit|
     appkit.dependency 'Localize-Swift/LocalizeSwiftCore'
     appkit.osx.deployment_target = '10.13'
-    appkit.source_files = 'Sources/UI/IBDesignable+Localize+AppKit.swift'
+    appkit.source_files = ['Sources/UI/IBDesignable+Localize+AppKit.swift', 'Sources/UI/AutoI18nable+AppKit.swift']
+  end
+
+  s.subspec 'SwiftUI' do |swiftui|
+    swiftui.dependency 'Localize-Swift/LocalizeSwiftCore'
+    swiftui.ios.deployment_target = '13.0'
+    swiftui.osx.deployment_target = '10.15'
+    swiftui.tvos.deployment_target = '13.0'
+    swiftui.watchos.deployment_target = '6.0'
+    swiftui.source_files = 'Sources/UI/AutoI18nable+SwiftUI.swift'
   end
 
 end

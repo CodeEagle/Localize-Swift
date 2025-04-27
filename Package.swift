@@ -20,7 +20,6 @@ let package = Package(
         .target(
             name: "Localize_Swift",
             path: "Sources",
-            exclude: ["UI/IBDesignable+Localize.swift", "UI/IBDesignable+Localize+AppKit.swift"],
             sources: ["."],
             resources: [])
     ],
