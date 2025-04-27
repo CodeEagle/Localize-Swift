@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # **** Update me when new Xcode versions are released! ****
-PLATFORM="platform=iOS Simulator,OS=14.0,name=iPhone 11"
-SDK="iphonesimulator"
+IOS_PLATFORM="platform=iOS Simulator,OS=18.2,name=iPhone 16"
+IOS_SDK="iphonesimulator"
+MACOS_PLATFORM="platform=macOS"
+MACOS_SDK="macosx"
 
 
 # It is pitch black.
@@ -18,12 +20,20 @@ trap trap_handler INT TERM EXIT
 MODE="$1"
 
 if [ "$MODE" = "build" ]; then
-    echo "Building Localize-Swift."
+    echo "Building Localize-Swift for iOS."
     xcodebuild \
         -project Localize_Swift.xcodeproj \
         -scheme Localize_Swift \
-        -sdk "$SDK" \
-        -destination "$PLATFORM" \
+        -sdk "$IOS_SDK" \
+        -destination "$IOS_PLATFORM" \
+        build
+
+    echo "Building Localize-Swift for macOS."
+    xcodebuild \
+        -project Localize_Swift.xcodeproj \
+        -scheme "Localize_Swift OSX" \
+        -sdk "$MACOS_SDK" \
+        -destination "$MACOS_PLATFORM" \
         build
     trap - EXIT
     exit 0
@@ -38,8 +48,8 @@ if [ "$MODE" = "examples" ]; then
         xcodebuild \
             -workspace "${example}Sample.xcworkspace" \
             -scheme Sample \
-            -sdk "$SDK" \
-            -destination "$PLATFORM" \
+            -sdk "$IOS_SDK" \
+            -destination "$IOS_PLATFORM" \
             build test
     done
     trap - EXIT

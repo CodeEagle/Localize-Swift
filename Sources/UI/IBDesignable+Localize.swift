@@ -1,92 +1,95 @@
 //
-//  IBDesignable+Localize1.swift
+//  IBDesignable+Localize.swift
 //  Localize-Swift
 //
 //  Copyright © 2020 Roy Marmelstein. All rights reserved.
 //
 
 import Foundation
-import UIKit
 
-// MARK: - UILabel localize Key extention for language in story board
+#if os(iOS) || os(tvOS)
+    import UIKit
 
-@IBDesignable public extension UILabel {
-    @IBInspectable var localizeKey: String? {
-        set {
-            // set new value from dictionary
-            DispatchQueue.main.async {
-                self.text = newValue?.localized()
+    // MARK: - UILabel localize Key extention for language in story board
+
+    @IBDesignable extension UILabel {
+        @IBInspectable public var localizeKey: String? {
+            set {
+                // set new value from dictionary
+                DispatchQueue.main.async {
+                    self.text = newValue?.localized()
+                }
+            }
+            get {
+                return self.text
             }
         }
-        get {
-            return self.text
-        }
     }
-}
 
-// MARK: - UIButton localize Key extention for language in story board
+    // MARK: - UIButton localize Key extention for language in story board
 
-@IBDesignable public extension UIButton {
+    @IBDesignable extension UIButton {
 
-    @IBInspectable var localizeKey: String? {
-        set {
-            // set new value from dictionary
-            DispatchQueue.main.async {
-                self.setTitle(newValue?.localized(), for: .normal)
+        @IBInspectable public var localizeKey: String? {
+            set {
+                // set new value from dictionary
+                DispatchQueue.main.async {
+                    self.setTitle(newValue?.localized(), for: .normal)
+                }
+            }
+            get {
+                return self.titleLabel?.text
             }
         }
-        get {
-            return self.titleLabel?.text
-        }
     }
-}
 
-// MARK: - UITextView localize Key extention for language in story board
+    // MARK: - UITextView localize Key extention for language in story board
 
-@IBDesignable public extension UITextView {
+    @IBDesignable extension UITextView {
 
-    @IBInspectable var localizeKey: String? {
-        set {
-            // set new value from dictionary
-            DispatchQueue.main.async {
-                self.text = newValue?.localized()
+        @IBInspectable public var localizeKey: String? {
+            set {
+                // set new value from dictionary
+                DispatchQueue.main.async {
+                    self.text = newValue?.localized()
+                }
+            }
+            get {
+                return self.text
             }
         }
-        get {
-            return self.text
-        }
     }
-}
 
-// MARK: - UITextField localize Key extention for language in story board
+    // MARK: - UITextField localize Key extention for language in story board
 
-@IBDesignable public extension UITextField {
-    @IBInspectable var localizeKey: String? {
-        set {
-            // set new value from dictionary
-            DispatchQueue.main.async {
-                self.placeholder = newValue?.localized()
+    @IBDesignable extension UITextField {
+        @IBInspectable public var localizeKey: String? {
+            set {
+                // set new value from dictionary
+                DispatchQueue.main.async {
+                    self.placeholder = newValue?.localized()
+                }
+            }
+            get {
+                return self.placeholder
             }
         }
-        get {
-            return self.placeholder
-        }
     }
-}
 
-// MARK: - UINavigationItem localize Key extention for language in story board
+    // MARK: - UINavigationItem localize Key extention for language in story board
 
-@IBDesignable public extension UINavigationItem {
+    @IBDesignable extension UINavigationItem {
 
-    @IBInspectable var localizeKey: String? {
-        set {
-            // set new value from dictionary
-            DispatchQueue.main.async {
-                self.title = newValue?.localized()
+        @IBInspectable public var localizeKey: String? {
+            set {
+                // set new value from dictionary
+                DispatchQueue.main.async {
+                    self.title = newValue?.localized()
+                }
+            }
+            get {
+                return self.title
             }
         }
-        get {
-            return self.title
-        }
     }
-}
+#endif

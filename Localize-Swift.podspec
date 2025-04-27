@@ -17,13 +17,13 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.ios.deployment_target = '9.0'
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.13'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '4.0'
 
   s.subspec 'LocalizeSwiftCore' do |core|
     core.ios.deployment_target = '9.0'
-    core.osx.deployment_target = '10.10'
+    core.osx.deployment_target = '10.13'
     core.tvos.deployment_target = '9.0'
     core.watchos.deployment_target = '4.0'
     core.source_files = "Sources/"
@@ -32,7 +32,14 @@ Pod::Spec.new do |s|
   s.subspec 'UIKit' do |ui|
     ui.dependency 'Localize-Swift/LocalizeSwiftCore'
     ui.ios.deployment_target = '9.0'
-    ui.source_files = 'Sources/UI/'
+    ui.tvos.deployment_target = '9.0'
+    ui.source_files = 'Sources/UI/IBDesignable+Localize.swift'
+  end
+
+  s.subspec 'AppKit' do |appkit|
+    appkit.dependency 'Localize-Swift/LocalizeSwiftCore'
+    appkit.osx.deployment_target = '10.13'
+    appkit.source_files = 'Sources/UI/IBDesignable+Localize+AppKit.swift'
   end
 
 end
