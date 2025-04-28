@@ -123,10 +123,13 @@ open class Localize: NSObject {
         if selectedLanguage != currentLanguage() {
             UserDefaults.standard.set(selectedLanguage, forKey: LCLCurrentLanguageKey)
             UserDefaults.standard.synchronize()
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil)
-            }
+            DispatchQueue.main.asyncAfter(
+                deadline: DispatchTime.now() + 0.1,
+                execute: {
+                    NotificationCenter.default.post(
+                        name: Notification.Name(rawValue: LCLLanguageChangeNotification),
+                        object: nil)
+                })
         }
     }
 
