@@ -11,8 +11,8 @@ import Foundation
     import AppKit
     extension NSTableColumn: AutoI18nable {
         public func setString(value: String, forTag tag: String? = nil) {
-            switch tag {
-            case "headerToolTip":
+            switch tag?.lowercased() {
+            case "headertooltip":
                 headerToolTip = value
                 break
             default:
@@ -36,7 +36,7 @@ import Foundation
 
     extension NSTextField: AutoI18nable {
         public func setString(value: String, forTag tag: String? = nil) {
-            switch tag {
+            switch tag?.lowercased() {
             case "placeholder":
                 placeholderString = value
             default:
@@ -50,7 +50,7 @@ import Foundation
     extension NSButton: AutoI18nable {
 
         public func setString(value: String, forTag tag: String? = nil) {
-            switch tag {
+            switch tag?.lowercased() {
             case "tooltip":
                 toolTip = value
             default:
@@ -75,7 +75,7 @@ import Foundation
 
     extension NSMenuItem: AutoI18nable {
         public func setString(value: String, forTag tag: String? = nil) {
-            switch tag {
+            switch tag?.lowercased() {
             case "tooltip":
                 toolTip = value
             default:
@@ -88,7 +88,7 @@ import Foundation
 
     extension NSTabViewItem: AutoI18nable {
         public func setString(value: String, forTag tag: String? = nil) {
-            switch tag {
+            switch tag?.lowercased() {
             case "tooltip":
                 toolTip = value
             default:
