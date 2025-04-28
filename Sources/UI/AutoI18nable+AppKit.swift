@@ -17,7 +17,6 @@ import Foundation
                 break
             default:
                 title = value
-                break
             }
         }
     }
@@ -40,10 +39,8 @@ import Foundation
             switch tag {
             case "placeholder":
                 placeholderString = value
-                break
             default:
                 stringValue = value
-                break
             }
         }
     }
@@ -56,9 +53,9 @@ import Foundation
             switch tag {
             case "tooltip":
                 toolTip = value
+                break
             default:
                 title = value
-                break
             }
         }
     }
@@ -82,10 +79,8 @@ import Foundation
             switch tag {
             case "tooltip":
                 toolTip = value
-                break
             default:
                 title = value
-                break
             }
         }
     }
@@ -97,10 +92,8 @@ import Foundation
             switch tag {
             case "tooltip":
                 toolTip = value
-                break
             default:
                 label = value
-                break
             }
         }
     }
