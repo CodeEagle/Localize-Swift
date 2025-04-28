@@ -6,17 +6,11 @@ public protocol AutoI18nable: AnyObject {
 
     func autoLocalize(key: String, tag: String?)
 
-    var autoI18nableKeys: [KeyObject] { get set }
 }
 
 extension AutoI18nable {
-    public func autoLocalize(key: String, tag: String?) {
-        var oldKeys = autoI18nableKeys
-        let newKey = KeyObject(key: key, tag: tag)
-        if oldKeys.contains(where: { $0.key == key && $0.tag == tag }) == false {
-            oldKeys.append(newKey)
-        }
-        WeakTableHolder.setObject(self, forKey: newKey)
+    public func autoLocalize(key: String, tag: String? = nil) {
+        weakTableHolder.setObject(self, forKey: KeyObject(key: key, tag: tag))
         setString(value: key.localized(), forTag: tag)
     }
 
@@ -30,10 +24,30 @@ extension AutoI18nable {
                 self, &AssociatedKeys.localizedKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
+
+    var weakTableHolder: WeakTableHolder {
+        get {
+            var holder =
+                objc_getAssociatedObject(self, &AssociatedKeys.localizedKey) as? WeakTableHolder
+            if holder == nil {
+                holder = WeakTableHolder()
+                objc_setAssociatedObject(
+                    self, &AssociatedKeys.localizedKey, holder,
+                    .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+            return holder!
+        }
+        set {
+            objc_setAssociatedObject(
+                self, &AssociatedKeys.localizedKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
 }
 private struct AssociatedKeys {
     static var localizedKey: UnsafeRawPointer = UnsafeRawPointer(
         bitPattern: "localizedKey".hashValue)!
+    static var weakTableHolder: UnsafeRawPointer = UnsafeRawPointer(
+        bitPattern: "weakTableHolder".hashValue)!
 }
 
 class WeakTableHolder: NSObject {
@@ -48,19 +62,20 @@ class WeakTableHolder: NSObject {
     }
 
     @objc func langageChanged() {
-        let keyEnumerator = weakTable.keyEnumerator()
+        let keyEnumerator: NSEnumerator = weakTable.keyEnumerator()
         while let key = keyEnumerator.nextObject() as? KeyObject {
             if let object = weakTable.object(forKey: key) as? AutoI18nable {
                 object.setString(value: key.key.localized(), forTag: key.tag)
             }
         }
     }
-    static func setObject(_ object: AnyObject, forKey key: KeyObject) {
-        shared.weakTable.setObject(object, forKey: key)
+
+    func setObject(_ object: AnyObject, forKey key: KeyObject) {
+        weakTable.setObject(object, forKey: key)
     }
 
-    static func getObject(forKey key: KeyObject) -> AnyObject? {
-        return shared.weakTable.object(forKey: key)
+    func getObject(forKey key: KeyObject) -> AnyObject? {
+        return weakTable.object(forKey: key)
     }
 }
 
