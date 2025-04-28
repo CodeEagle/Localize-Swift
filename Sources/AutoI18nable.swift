@@ -35,18 +35,18 @@ extension AutoI18nable {
     var weakTableHolder: WeakTableHolder {
         get {
             var holder =
-                objc_getAssociatedObject(self, &AssociatedKeys.localizedKey) as? WeakTableHolder
+                objc_getAssociatedObject(self, &AssociatedKeys.weakTableHolder) as? WeakTableHolder
             if holder == nil {
                 holder = WeakTableHolder()
                 objc_setAssociatedObject(
-                    self, &AssociatedKeys.localizedKey, holder,
+                    self, &AssociatedKeys.weakTableHolder, holder,
                     .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             }
             return holder!
         }
         set {
             objc_setAssociatedObject(
-                self, &AssociatedKeys.localizedKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                self, &AssociatedKeys.weakTableHolder, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }
