@@ -2,23 +2,28 @@ import Foundation
 import ObjectiveC
 
 public protocol AutoI18nable: AnyObject {
-    var i18nString: String { get set }
+    func setString(value: String, forTag tag: String?)
 
-    func autoLocalize(key: String)
+    func autoLocalize(key: String, tag: String?)
 
-    var autoI18nKey: String? { get set }
+    var autoI18nableKeys: [KeyObject] { get set }
 }
 
 extension AutoI18nable {
-    public func autoLocalize(key: String) {
-        autoI18nKey = key
-        WeakTableHolder.setObject(self, forKey: KeyObject(key: key))
-        i18nString = key.localized()
+    public func autoLocalize(key: String, tag: String?) {
+        var oldKeys = autoI18nableKeys
+        let newKey = KeyObject(key: key, tag: tag)
+        if oldKeys.contains(where: { $0.key == key && $0.tag == tag }) == false {
+            oldKeys.append(newKey)
+        }
+        WeakTableHolder.setObject(self, forKey: newKey)
+        setString(value: key.localized(), forTag: tag)
     }
 
-    public var autoI18nKey: String? {
+    public var autoI18nableKeys: [KeyObject] {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.localizedKey) as? String
+            return objc_getAssociatedObject(self, &AssociatedKeys.localizedKey) as? [KeyObject]
+                ?? []
         }
         set {
             objc_setAssociatedObject(
@@ -46,7 +51,7 @@ class WeakTableHolder: NSObject {
         let keyEnumerator = weakTable.keyEnumerator()
         while let key = keyEnumerator.nextObject() as? KeyObject {
             if let object = weakTable.object(forKey: key) as? AutoI18nable {
-                object.i18nString = key.key.localized()
+                object.setString(value: key.key.localized(), forTag: key.tag)
             }
         }
     }
@@ -59,9 +64,11 @@ class WeakTableHolder: NSObject {
     }
 }
 
-class KeyObject: NSObject {
-    var key: String
-    init(key: String) {
+public class KeyObject: NSObject {
+    let key: String
+    let tag: String?
+    init(key: String, tag: String?) {
         self.key = key
+        self.tag = tag
     }
 }
