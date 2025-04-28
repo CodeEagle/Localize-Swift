@@ -10,6 +10,18 @@ import Foundation
 #if os(macOS)
     import AppKit
 
+    extension NSSegmentedControl: AutoI18nable {
+        public func setAutoLize(label: String, forSegment segment: Int) {
+            autoLocalize(key: label, tag: "\(segment)")
+        }
+
+        public func setString(value: String, forTag tag: String? = nil) {
+            let segmentIndex = tag.flatMap { Int($0) } ?? 0
+            if segmentIndex < segmentCount {
+                setLabel(value, forSegment: segmentIndex)
+            }
+        }
+    }
     // MARK: - NSTextField AutoI18nable implementation
 
     extension NSTextField: AutoI18nable {
