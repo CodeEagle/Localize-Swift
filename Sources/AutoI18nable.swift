@@ -10,8 +10,10 @@ public protocol AutoI18nable: AnyObject {
 
 extension AutoI18nable {
     public func autoLocalize(key: String, tag: String? = nil) {
-        weakTableHolder.setObject(self, forKey: KeyObject(key: key, tag: tag))
+        let keyObject = KeyObject(key: key, tag: tag)
+        weakTableHolder.setObject(self, forKey: keyObject)
         setString(value: key.localized(), forTag: tag)
+        autoI18nableKeys.append(keyObject)
     }
 
     public var autoI18nableKeys: [KeyObject] {
