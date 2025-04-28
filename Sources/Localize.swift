@@ -124,7 +124,7 @@ open class Localize: NSObject {
             UserDefaults.standard.set(selectedLanguage, forKey: LCLCurrentLanguageKey)
             UserDefaults.standard.synchronize()
             DispatchQueue.main.asyncAfter(
-                deadline: DispatchTime.now() + 0.1,
+                deadline: DispatchTime.now() + 1,
                 execute: {
                     NotificationCenter.default.post(
                         name: Notification.Name(rawValue: LCLLanguageChangeNotification),
