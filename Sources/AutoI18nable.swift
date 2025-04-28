@@ -54,6 +54,10 @@ class WeakTableHolder: NSObject {
     static let shared = WeakTableHolder()
     private var weakTable: NSMapTable<KeyObject, AnyObject> = NSMapTable.weakToWeakObjects()
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override init() {
         super.init()
         NotificationCenter.default.addObserver(
