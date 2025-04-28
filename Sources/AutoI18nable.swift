@@ -18,8 +18,13 @@ extension AutoI18nable {
 
     public var autoI18nableKeys: [KeyObject] {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.localizedKey) as? [KeyObject]
-                ?? []
+            var old = objc_getAssociatedObject(self, &AssociatedKeys.localizedKey) as? [KeyObject]
+            if old == nil {
+                old = []
+                objc_setAssociatedObject(
+                    self, &AssociatedKeys.localizedKey, old, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+            return old!
         }
         set {
             objc_setAssociatedObject(
