@@ -53,7 +53,6 @@ import Foundation
             switch tag {
             case "tooltip":
                 toolTip = value
-                break
             default:
                 title = value
             }
