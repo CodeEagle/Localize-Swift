@@ -18,7 +18,7 @@ import Foundation
         private let bundle: Bundle?
         @State private var currentLanguage: String = Localize.currentLanguage()
 
-        public init(_ key: String, tableName: String? = nil, bundle: Bundle? = nil) {
+        nonisolated public init(_ key: String, tableName: String? = nil, bundle: Bundle? = nil) {
             self.key = key
             self.tableName = tableName
             self.bundle = bundle
@@ -64,7 +64,7 @@ import Foundation
     // Extension to make it easier to use LocalizedText
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     extension Text {
-        @MainActor public static func localized(_ key: String, tableName: String? = nil, bundle: Bundle? = nil)
+        public static func localized(_ key: String, tableName: String? = nil, bundle: Bundle? = nil)
             -> LocalizedText
         {
             LocalizedText(key, tableName: tableName, bundle: bundle)

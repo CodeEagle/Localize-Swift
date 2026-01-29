@@ -6,7 +6,7 @@
 //  Copyright © 2020 Roy Marmelstein. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 //! Project version number for Localize_Swift.
 FOUNDATION_EXPORT double Localize_SwiftVersionNumber;
