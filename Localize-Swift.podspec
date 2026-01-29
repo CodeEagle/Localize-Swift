@@ -12,8 +12,8 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/marmelroy/Localize-Swift.git", :tag => s.version.to_s, :submodules => true}
   s.social_media_url   = "http://twitter.com/marmelroy"
 
-  s.swift_version = '5.3'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.3' }
+  s.swift_version = '6.2'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '6.2' }
   s.requires_arc = true
 
   s.ios.deployment_target = '9.0'

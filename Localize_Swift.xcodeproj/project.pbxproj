@@ -21,7 +21,6 @@
 		343A6DEE1D152E5A0081AA37 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344169461C67539300B93D28 /* Foundation.framework */; };
 		343A6DF01D152E5A0081AA37 /* Localize_Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 3433F2501C518B38003AE34D /* Localize_Swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		344169471C67539300B93D28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 344169461C67539300B93D28 /* Foundation.framework */; };
-		345D5906251F83910088CBEC /* IBDesignable+Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345D5905251F83910088CBEC /* IBDesignable+Localize.swift */; };
 		68973D661DA7AA200076F08A /* String+LocalizeBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68973D651DA7AA200076F08A /* String+LocalizeBundle.swift */; };
 		68973D671DA7AA200076F08A /* String+LocalizeBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68973D651DA7AA200076F08A /* String+LocalizeBundle.swift */; };
 		68973D681DA7AA200076F08A /* String+LocalizeBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68973D651DA7AA200076F08A /* String+LocalizeBundle.swift */; };
@@ -58,7 +57,6 @@
 		343A6DE81D152B1B0081AA37 /* Localize_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Localize_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		343A6DF51D152E5A0081AA37 /* Localize_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Localize_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		344169461C67539300B93D28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		345D5905251F83910088CBEC /* IBDesignable+Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "IBDesignable+Localize.swift"; path = "Sources/UI/IBDesignable+Localize.swift"; sourceTree = SOURCE_ROOT; };
 		68973D651DA7AA200076F08A /* String+LocalizeBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+LocalizeBundle.swift"; path = "Sources/String+LocalizeBundle.swift"; sourceTree = SOURCE_ROOT; };
 		68973D6A1DA7AB140076F08A /* String+LocalizedBundleTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+LocalizedBundleTableName.swift"; path = "Sources/String+LocalizedBundleTableName.swift"; sourceTree = SOURCE_ROOT; };
 		68A520031DA6D5FD00F43D9E /* String+LocalizeTableName.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; name = "String+LocalizeTableName.swift"; path = "Sources/String+LocalizeTableName.swift"; sourceTree = SOURCE_ROOT; tabWidth = 4; usesTabs = 0; };
@@ -139,7 +137,6 @@
 				68A520031DA6D5FD00F43D9E /* String+LocalizeTableName.swift */,
 				68973D651DA7AA200076F08A /* String+LocalizeBundle.swift */,
 				68973D6A1DA7AB140076F08A /* String+LocalizedBundleTableName.swift */,
-				345D5905251F83910088CBEC /* IBDesignable+Localize.swift */,
 				3433F23B1C518AF7003AE34D /* Info.plist */,
 				344169461C67539300B93D28 /* Foundation.framework */,
 			);
@@ -372,7 +369,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				68973D6B1DA7AB140076F08A /* String+LocalizedBundleTableName.swift in Sources */,
-				345D5906251F83910088CBEC /* IBDesignable+Localize.swift in Sources */,
 				68973D661DA7AA200076F08A /* String+LocalizeBundle.swift in Sources */,
 				3433F2531C518B38003AE34D /* Localize.swift in Sources */,
 				68A520041DA6D5FD00F43D9E /* String+LocalizeTableName.swift in Sources */,
@@ -485,7 +481,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -539,7 +535,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -559,15 +555,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Localize_Swift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.roymarmelstein.Localize-Swift";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
+							PRODUCT_BUNDLE_IDENTIFIER = "com.roymarmelstein.Localize-Swift";
+							PRODUCT_NAME = "$(TARGET_NAME)";
+							SKIP_INSTALL = YES;
+							SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+							SWIFT_VERSION = 6.2;			};
 			name = Debug;
 		};
 		3433F24C1C518AF7003AE34D /* Release */ = {
@@ -582,12 +577,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Localize_Swift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.roymarmelstein.Localize-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 			};
 			name = Release;
 		};
@@ -598,7 +593,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.roymarmelstein.Localize-SwiftTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 			};
 			name = Debug;
 		};
@@ -609,7 +604,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.roymarmelstein.Localize-SwiftTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 			};
 			name = Release;
 		};
@@ -633,7 +628,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 			};
 			name = Debug;
 		};
@@ -655,7 +650,7 @@
 				PRODUCT_NAME = Localize_Swift;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 			};
 			name = Release;
 		};
@@ -679,7 +674,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -703,7 +698,7 @@
 				PRODUCT_NAME = Localize_Swift;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -729,7 +724,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
@@ -753,7 +748,7 @@
 				PRODUCT_NAME = Localize_Swift;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.2;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};

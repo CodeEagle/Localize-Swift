@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:6.2
 
 import PackageDescription
 
@@ -23,5 +23,5 @@ let package = Package(
             sources: ["."],
             resources: [])
     ],
-    swiftLanguageVersions: [.v5]
+    swiftLanguageVersions: [.v6]
 )
