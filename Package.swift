@@ -5,9 +5,9 @@ import PackageDescription
 let package = Package(
     name: "Localize_Swift",
     platforms: [
-        .iOS(.v9),
+        .iOS(.v12),
         .macOS(.v10_13),
-        .tvOS(.v9),
+        .tvOS(.v12),
         .watchOS(.v4),
     ],
     products: [
@@ -23,5 +23,5 @@ let package = Package(
             sources: ["."],
             resources: [])
     ],
-    swiftLanguageVersions: [.v6]
+    swiftLanguageModes: [.v6]
 )
