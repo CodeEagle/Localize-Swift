@@ -92,12 +92,11 @@ open class Localize: NSObject {
      - Returns: Array of available languages.
      */
     open class func availableLanguages(_ excludeBase: Bool = false) -> [String] {
-        var availableLanguages = Bundle.main.localizations
-        // If excludeBase = true, don't include "Base" in available languages
-        if let indexOfBase = availableLanguages.firstIndex(of: "Base"), excludeBase == true {
-            availableLanguages.remove(at: indexOfBase)
-        }
-        return availableLanguages
+        var langs = Set(Bundle.main.localizations)
+        // Merge languages declared in any .xcstrings file
+        XCStringsLoader.shared.availableLanguages(in: .main).forEach { langs.insert($0) }
+        if excludeBase { langs.remove("Base") }
+        return Array(langs)
     }
 
     /**
@@ -123,6 +122,7 @@ open class Localize: NSObject {
         if selectedLanguage != currentLanguage() {
             UserDefaults.standard.set(selectedLanguage, forKey: LCLCurrentLanguageKey)
             UserDefaults.standard.synchronize()
+            XCStringsLoader.shared.clearCache()
             NotificationCenter.default.post(
                 name: Notification.Name(rawValue: LCLLanguageChangeNotification),
                 object: nil)

@@ -23,14 +23,31 @@ public extension String {
      */
     func localized(using tableName: String?, in bundle: Bundle?) -> String {
         let bundle: Bundle = bundle ?? .main
-        if let path = bundle.path(forResource: Localize.currentLanguage(), ofType: "lproj"),
-            let bundle = Bundle(path: path) {
-            return bundle.localizedString(forKey: self, value: nil, table: tableName)
+        let language = Localize.currentLanguage()
+
+        // 1. Try .lproj bundle (classic .strings / .stringsdict)
+        if let path = bundle.path(forResource: language, ofType: "lproj"),
+           let lprojBundle = Bundle(path: path) {
+            let result = lprojBundle.localizedString(forKey: self, value: nil, table: tableName)
+            if result != self { return result }
         }
-        else if let path = bundle.path(forResource: LCLBaseBundle, ofType: "lproj"),
-            let bundle = Bundle(path: path) {
-            return bundle.localizedString(forKey: self, value: nil, table: tableName)
+
+        // 2. Fallback to .xcstrings (String Catalog) in the bundle root
+        if let result = XCStringsLoader.shared.localizedString(
+            forKey: self,
+            language: language,
+            tableName: tableName,
+            bundle: bundle
+        ) {
+            return result
         }
+
+        // 3. Base lproj fallback
+        if let path = bundle.path(forResource: LCLBaseBundle, ofType: "lproj"),
+           let baseBundle = Bundle(path: path) {
+            return baseBundle.localizedString(forKey: self, value: nil, table: tableName)
+        }
+
         return self
     }
     
