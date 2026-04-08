@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_everything-claude-code_exa__web_search_exa",
+      "mcp__plugin_everything-claude-code_exa__web_fetch_exa",
+      "mcp__plugin_context-mode_context-mode__execute",
+      "Bash(swift build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"feat: add support for Localizable.xcstrings \\(String Catalog\\) format:*)",
+      "Bash(git tag:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
