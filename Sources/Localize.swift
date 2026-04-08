@@ -123,9 +123,12 @@ open class Localize: NSObject {
             UserDefaults.standard.set(selectedLanguage, forKey: LCLCurrentLanguageKey)
             UserDefaults.standard.synchronize()
             XCStringsLoader.shared.clearCache()
-            NotificationCenter.default.post(
-                name: Notification.Name(rawValue: LCLLanguageChangeNotification),
-                object: nil)
+            // Ensure notification is delivered on main thread so UI observers update safely
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(
+                    name: Notification.Name(rawValue: LCLLanguageChangeNotification),
+                    object: nil)
+            }
         }
     }
 
